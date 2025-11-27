@@ -16,7 +16,13 @@ Quick setup repository for Kiro AI assistant with pre-configured MCP servers, st
    # or: pip install uv
    ```
 
-3. Restart Kiro or reconnect MCP servers from the MCP Server view
+3. Set up environment variables:
+   ```bash
+   # Add to your shell profile (~/.zshrc, ~/.bashrc, etc.)
+   export CONTEXT7_API_KEY="your-context7-api-key"
+   ```
+
+4. Restart Kiro or reconnect MCP servers from the MCP Server view
 
 ## What's Included
 
