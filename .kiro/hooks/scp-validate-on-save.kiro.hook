@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "SCP Validate on Save",
+  "description": "Validate Service Control Policies when saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "policies/**/*.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Service Control Policy has been modified. Please:\n1. Validate JSON syntax\n2. Check policy uses explicit Deny statements for restrictions\n3. Verify conditions are properly structured\n4. Ensure region restrictions allow eu-central-1, eu-west-1, and us-east-1 for global services\n5. Check for unintended broad denials that could break services\n6. Verify NotAction is used appropriately for exceptions\n7. Validate policy follows naming convention: aws-landing-zone-<ou>-<purpose>-scp.json\n8. Check for any security gaps or overly permissive statements\n9. Ensure policy aligns with ANWB security requirements\n10. Suggest testing in sandbox OU before broader deployment\n11. Remind to communicate changes to all teams before deployment"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Python Lint on Save",
+  "description": "Lint Python Lambda functions when saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "lambda/**/*.py",
+      "gitlab-ci/**/*.py"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Python file has been modified. Please:\n1. Check for PEP 8 style compliance\n2. Verify proper error handling with try-except blocks\n3. Check boto3 clients are created inside functions, not at module level\n4. Ensure proper logging with context (using f-strings)\n5. For CloudFormation custom resources, verify cfnresponse is used correctly\n6. For Config rules, check compliance evaluation format\n7. Validate function names use snake_case\n8. Check for hardcoded credentials or account IDs\n9. Ensure proper exception handling for AWS API calls\n10. Verify Lambda handler signature is correct"
+  }
+}

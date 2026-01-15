@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Manifest Validate on Save",
+  "description": "Validate manifest.yaml when saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "manifest.yaml"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The manifest.yaml file has been modified. Please:\n1. Validate YAML syntax\n2. Check version is set to 2021-03-15\n3. Verify region is eu-central-1\n4. Validate all resource names follow naming conventions\n5. Check deployment_targets reference valid OUs and accounts\n6. Verify resource_file paths exist\n7. Ensure parameters are properly defined\n8. Check export_outputs use correct SSM parameter naming\n9. Validate regions are appropriate (eu-central-1, eu-west-1, us-east-1 only for global services)\n10. Ensure SCPs are deployed before dependent StackSets\n11. Check for any duplicate resource names\n12. Verify critical resources are deployed in correct order"
+  }
+}

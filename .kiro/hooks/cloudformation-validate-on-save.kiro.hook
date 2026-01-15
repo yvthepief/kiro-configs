@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "CloudFormation Validate on Save",
+  "description": "Validate CloudFormation templates when saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "templates/**/*.template",
+      "templates/**/*.yaml",
+      "templates/**/*.yml"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A CloudFormation template has been modified. Please:\n1. Validate template syntax and structure\n2. Check for proper parameter definitions and constraints\n3. Verify resource naming follows CustomControlTower-<Purpose> convention\n4. Ensure outputs are properly defined for SSM exports\n5. Check IAM policies follow least privilege\n6. Verify encryption is enabled for all data stores\n7. Check for proper tagging on resources\n8. Validate Lambda function references point to correct S3 locations\n9. Ensure DeletionPolicy is set for critical resources\n10. Check for any security issues or misconfigurations"
+  }
+}
