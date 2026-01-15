@@ -7,7 +7,6 @@ inclusion: always
 
 ## Dependency Management
 - Use latest stable versions of all libraries and dependencies
-- Leverage Context7 MCP server to verify compatibility before adding dependencies
 - Justify each new dependency with clear business or technical value
 - Prefer well-maintained libraries with active communities
 - Document version constraints in project files
@@ -17,7 +16,6 @@ inclusion: always
 ## Code Quality Standards
 - Never create duplicate files with suffixes like `_fixed`, `_clean`, `_backup`, etc.
 - Work iteratively on existing files (hooks handle commits automatically)
-- Include relevant documentation links in code comments
 - Follow language-specific conventions (TypeScript for CDK, Python for Lambda)
 - Use meaningful variable and function names
 - Keep functions small and focused on single responsibilities
@@ -32,10 +30,9 @@ inclusion: always
 
 ## Documentation Approach
 - Maintain single comprehensive README covering all aspects including deployment
-- Reference official sources through MCP servers when available
+- All other documents ends up in a docs directory
 - Update documentation when upgrading dependencies
 - Keep documentation close to relevant code
-- Use inline comments for complex business logic
 - Document API endpoints and data structures
 - Include setup and deployment instructions
 

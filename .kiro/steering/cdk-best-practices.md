@@ -1,7 +1,8 @@
 <!-- CDK Best Practices adopted from https://github.com/mbonig/kiro-steering-docs/blob/main/cdk/cdk-best-practices.md -->
 ---
 title: CDK Best Practices
-inclusion: always
+inclusion: fileMatch
+fileMatchPattern: '**/*.ts'
 ---
 
 # CDK Best Practices
