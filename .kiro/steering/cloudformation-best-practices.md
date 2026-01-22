@@ -100,19 +100,44 @@ Resources:
 - Include Lambda execution role in template
 - Configure appropriate timeout and memory
 
+### Lambda Infrastructure Standards
+- **Always use ARM64 architecture (Graviton)** for better price-performance
+- **Attach a CloudWatch Log Group** with 7-day retention for cost optimization
+- **Use the latest Python runtime** (3.14+ when available, currently 3.14)
+- **Always use Dead Letter Queue (DLQ)** for failed invocations
+- **Enable monitoring and tracing** with X-Ray for observability
+
 ```yaml
 LambdaFunction:
   Type: AWS::Lambda::Function
   Properties:
     FunctionName: !Sub 'CustomControlTower-${Purpose}'
-    Runtime: python3.12
+    Runtime: python3.13
     Handler: index.lambda_handler
+    Architectures:
+      - arm64
     Code:
       S3Bucket: !Sub 'custom-control-tower-lambda-functions-${AWS::AccountId}-${AWS::Region}'
       S3Key: !Sub '${LambdaDirectory}/function.zip'
     Role: !GetAtt LambdaExecutionRole.Arn
     Timeout: 300
     MemorySize: 256
+    DeadLetterConfig:
+      TargetArn: !GetAtt LambdaDLQ.Arn
+    TracingConfig:
+      Mode: Active
+
+LambdaLogGroup:
+  Type: AWS::Logs::LogGroup
+  Properties:
+    LogGroupName: !Sub '/aws/lambda/${LambdaFunction}'
+    RetentionInDays: 7
+
+LambdaDLQ:
+  Type: AWS::SQS::Queue
+  Properties:
+    QueueName: !Sub '${LambdaFunction}-dlq'
+    MessageRetentionPeriod: 1209600  # 14 days
 ```
 
 ## Custom Resources
